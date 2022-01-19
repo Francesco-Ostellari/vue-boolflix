@@ -46,7 +46,7 @@ export default {
 
   methods: {
     getMovies() {
-      axios.get(this.valueHeader)
+      axios.get(this.staticApi)
       .then((result) => {
         this.movies = result.data.results
       })
