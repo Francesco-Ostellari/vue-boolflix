@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <Header />
+    <Header 
+    
+    @doSearch="getSelect($event)" :inputValue="valueHeader"/>
     <Main />
     <Footer />
   </div>
@@ -19,9 +21,14 @@ export default {
   },
   data() {
     return {
+      valueHeader:'',
+      staticApi: "https://api.themoviedb.org/3/search/movie?api_key=295649702f864d86aa6f022b7f8435fd&query="
     };
   },
   methods: {
+    getSelect(value) {
+      this.valueHeader = this.staticApi + value;
+    }
   },
 };
 </script>
