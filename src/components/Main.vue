@@ -12,7 +12,7 @@
                 TITOLO ORIGINALE: {{movie.original_title}}
               </div>
               <div>
-                LINGUA: {{movie.original_language}}
+                LINGUA: <i :class="(movie.original_language == 'en') ? 'flag flag-us' : `flag flag-${ movie.original_language }`"></i>
               </div>
               <div>
                 VOTO: {{movie.vote_average}}
