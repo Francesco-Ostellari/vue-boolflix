@@ -25,14 +25,14 @@
           <h1>SERIE TV</h1>
           <ul class="ul-movies" v-if="inputSearch.series.length > 0">
             <li class="li-movies" v-for="(serie, index) in inputSearch.series" :key="index+'series'">
-              <div>Title: {{serie.name}}</div>
-              <div>Original title: {{serie.original_name}}</div>
-              <div>Language: <i :class="(serie.original_language == 'en') ? 'flag flag-us' : `flag flag-${serie.original_language}`"></i></div>
-              <div>Vote: {{serie.vote_average}}</div>
+              <div>TITOLO: {{serie.name}}</div>
+              <div>TITOLO ORIGINALE: {{serie.original_name}}</div>
+              <div>LINGUA: <i :class="(serie.original_language == 'en') ? 'flag flag-us' : `flag flag-${serie.original_language}`"></i></div>
+              <div>VOTO: {{serie.vote_average}}</div>
               <hr>
             </li>
           </ul>
-          <h2 v-else>Nessuna serie TV trovata</h2>
+          <h2 v-else>Nessuna Serie TV trovata</h2>
         </div>
       </div>
     </div>
