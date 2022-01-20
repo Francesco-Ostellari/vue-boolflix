@@ -3,23 +3,36 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <ul class="ul-movies">
-            <li class="li-movies" v-for="(movie, index) in inputSearch " :key="index">
+          <h1>FILM</h1>
+          <ul v-if="inputSearch.movies.length > 0" class="ul-movies">
+            <li class="li-movies" v-for="(movie, index) in inputSearch.movies" :key="index+'movies'">
               <div>
-                TITOLO: {{movie.title}}
+                TITOLO: {{movie.title}} 
               </div>
               <div>
-                TITOLO ORIGINALE: {{movie.original_title}}
+                TITOLO ORIGINALE: {{movie.original_title}} 
               </div>
               <div>
                 LINGUA: <i :class="(movie.original_language == 'en') ? 'flag flag-us' : `flag flag-${ movie.original_language }`"></i>
               </div>
               <div>
-                VOTO: {{movie.vote_average}}
+                VOTO: {{movie.vote_average}} 
               </div>
               <hr>
             </li>
           </ul>
+          <h2 v-else>Nessun film trovato</h2>
+          <h1>SERIE TV</h1>
+          <ul class="ul-movies" v-if="inputSearch.series.length > 0">
+            <li class="li-movies" v-for="(serie, index) in inputSearch.series" :key="index+'series'">
+              <div>Title: {{serie.name}}</div>
+              <div>Original title: {{serie.original_name}}</div>
+              <div>Language: <i :class="(serie.original_language == 'en') ? 'flag flag-us' : `flag flag-${serie.original_language}`"></i></div>
+              <div>Vote: {{serie.vote_average}}</div>
+              <hr>
+            </li>
+          </ul>
+          <h2 v-else>Nessuna serie TV trovata</h2>
         </div>
       </div>
     </div>
@@ -33,11 +46,9 @@ export default {
   props: ["inputSearch"], 
   data() {
     return {
-      }
+
+    }
       
-  },
-  methods: {
-    
   }
 }
 </script>

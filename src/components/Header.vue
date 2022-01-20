@@ -10,13 +10,8 @@
       <li><a href="#">La mia lista</a></li>
     </ul>
     <div class="search-bar">
-      <input @keyup.enter="getAxios" v-model="inputText" id="search" type="text"  name="search">
-      <button @click="$emit('doSearch', inputText)"
-      class="btn btn-primary"
-      type="submit"
-      >
-      Cerca
-      </button>
+      <input id="search" v-model="inputText" type="text" name="search" @keyup.enter="getMerged">
+      <button class="btn btn-primary" type="submit" @click="getMerged"> Cerca </button>
     </div>
   </header>
 </template>
@@ -28,26 +23,52 @@ export default {
   data () {
     return {
       inputText: '',
-      getMovies: [],
+      merged: {
+				movies: [],
+				series: [],
+			},
+      query: 'https://api.themoviedb.org/3/search/',
+			api_key: '53982486ea69d909f7fc01dea5daec6b',
     }
   },
   methods: {
-    getAxios: function () {
-      axios.get("https://api.themoviedb.org/3/search/movie?api_key=53982486ea69d909f7fc01dea5daec6b",
-      {
-        params: {
-          query: this.inputText
-        }
-      })
-      .then(result => {
-          this.getMovies = result.data.results
-          this.$emit("sendSelect", this.getMovies)
-        
-      })
-      .catch(error => {
-          console.error(error);               
-      })
-    }
+    getMovies: function () {
+      const movie = 'movie';
+      const parameters = {
+				api_key: this.api_key,
+				query: this.inputText,
+			};
+      axios.get(`${this.query}${movie}`, { params: parameters })
+			.then((result) => {
+				this.merged.movies = result.data.results;
+			})
+			.catch((error) => {
+				console.log(error);
+			})
+    },
+    getSeries: function () {
+      const tv = 'tv';
+			const parameters = {
+				api_key: this.api_key,
+				query: this.inputText,
+			};
+			axios.get(`${this.query}${tv}`, { params: parameters })
+				.then((result) => {
+					this.merged.series = result.data.results;
+					
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+    },
+
+    getMerged: function () {
+      this.getMovies();
+			this.getSeries();
+			setTimeout(() => {
+				this.$emit('sendSelect', this.merged);
+			}, 700);
+    },
   },
 }
 </script>

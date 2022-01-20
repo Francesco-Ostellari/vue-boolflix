@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @sendSelect="getSelect($event)"/>
-    <Main :inputSearch="valueHeader"/>
+    <Main :inputSearch="boolflixApi"/>
     <Footer />
   </div>
 </template>
@@ -20,12 +20,16 @@ export default {
   },
   data() {
     return {
-      valueHeader: '',
+      boolflixApi: {
+        movies: [],
+        series: [],
+      },
     };
   },
   methods: {
     getSelect(value) {
-      this.valueHeader = value;
+      this.boolflixApi.movies = value.movies;
+      this.boolflixApi.series = value.series;
     },
   },
 };
