@@ -1,63 +1,53 @@
 <template>
-  <div>
+  <main>
     <div class="container">
       <div class="row">
         <div class="col">
-          <ul>
-            <li v-for="(movie, index) in valueHeader " :key="index">
+          <ul class="ul-movies">
+            <li class="li-movies" v-for="(movie, index) in inputSearch " :key="index">
               <div>
-                {{movie.title}}
+                TITOLO: {{movie.title}}
               </div>
               <div>
-                {{movie.original_title}}
+                TITOLO ORIGINALE: {{movie.original_title}}
               </div>
               <div>
-                {{movie.original_language}}
+                LINGUA: {{movie.original_language}}
               </div>
               <div>
-                {{movie.vote_average}}
+                VOTO: {{movie.vote_average}}
               </div>
+              <hr>
             </li>
           </ul>
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
-import axios from 'axios';
+
 export default {
   name: "Main",
-  props: {
-    valueHeader: {
-      type: String,
-    }, 
-  }, 
+  props: ["inputSearch"], 
   data() {
     return {
-      movies: null,
       }
       
   },
-  mounted() {
-    this.getMovies();
-  },
-
   methods: {
-    getMovies() {
-      axios.get(this.staticApi)
-      .then((result) => {
-        this.movies = result.data.results
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    }
+    
   }
 }
 </script>
 
-<style>
+<style lang="scss">
+.ul-movies {
+  list-style-type: disc;
+  .li-movies {
+    display: block;
+  }
+}
 
 </style>

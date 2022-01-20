@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <header>
     <div class="logo"></div>
     <ul>
       <li><a href="#">Home</a></li>
@@ -10,38 +10,53 @@
       <li><a href="#">La mia lista</a></li>
     </ul>
     <div class="search-bar">
-      <input id="search" type="text" v-model="inputText" name="search">
+      <input @keyup.enter="getAxios" v-model="inputText" id="search" type="text"  name="search">
       <button @click="$emit('doSearch', inputText)"
       class="btn btn-primary"
       type="submit"
       >
       Cerca
-    </button>
+      </button>
     </div>
-  </div>
+  </header>
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
   name: "Header",
-  props: {
-    inputValue: {
-      type: String,
-    }
-  },
   data () {
     return {
       inputText: '',
+      getMovies: [],
+    }
+  },
+  methods: {
+    getAxios: function () {
+      axios.get("https://api.themoviedb.org/3/search/movie?api_key=53982486ea69d909f7fc01dea5daec6b",
+      {
+        params: {
+          query: this.inputText
+        }
+      })
+      .then(result => {
+          this.getMovies = result.data.results
+          this.$emit("sendSelect", this.getMovies)
+        
+      })
+      .catch(error => {
+          console.error(error);               
+      })
     }
   },
 }
 </script>
 
 <style lang="scss">
-  div {
+  header {
     background-color: #211F1F;
-    height: 30px;
+    height: 80px;
+    padding-bottom: 80px;
     width: 100%;
   }.logo {
     width: 200px;
