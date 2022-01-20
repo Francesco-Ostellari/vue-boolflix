@@ -5,7 +5,7 @@
         <span>TITOLO: {{title}}</span>
         <span>TITOLO ORIGINALE: {{original}}</span>
         <span>LINGUA: <i :class="'flag flag-' + getFlags(lang)"></i></span>
-        <span class="voto">VOTO: {{vote}}</span>
+        <span class="voto">VOTO: {{arrNum(vote)}}</span>
     </div>  
   </div>
 </template>
@@ -38,6 +38,10 @@ export default {
         default:
           return lang;
       }
+    },
+    arrNum(vote) {
+      const numStar= parseFloat(vote);
+      return Math.round(numStar / 2);
     }
   }
 }
