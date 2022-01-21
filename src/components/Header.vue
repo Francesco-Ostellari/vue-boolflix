@@ -86,23 +86,23 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-  .container-left {
-    display: flex;
-    align-items: center;
-  }
-  ul {
-    list-style: none;
-    li {
-      display: inline-block;
-      margin-right: 10px;
-      a {
-        text-decoration: none;
-        color: white;
+    .container-left {
+      display: flex;
+      align-items: center;
+      ul {
+        list-style: none;
+        li {
+          display: inline-block;
+          margin-right: 10px;
+          a {
+            text-decoration: none;
+            color: white;
+          }
+        }
       }
     }
-  }
-  .search-bar {
-
+    input {
+      margin-right: 10px;
+    }
   }
 </style>
