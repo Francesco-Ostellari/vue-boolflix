@@ -1,17 +1,21 @@
 <template>
   <header>
-    <div class="logo"></div>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Serie TV</a></li>
-      <li><a href="#">Film</a></li>
-      <li><a href="#">Originale</a></li>
-      <li><a href="#">Aggiunti di recente</a></li>
-      <li><a href="#">La mia lista</a></li>
-    </ul>
+    <div class="container-left">
+      <div class="logo">
+        <img src="https://cdn.discordapp.com/attachments/895657298859544588/934028535184642078/logo.png" alt="">
+      </div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Serie TV</a></li>
+        <li><a href="#">Film</a></li>
+        <li><a href="#">Originale</a></li>
+        <li><a href="#">Aggiunti di recente</a></li>
+        <li><a href="#">La mia lista</a></li>
+      </ul>
+    </div>
     <div class="search-bar">
       <input id="search" v-model="inputText" type="text" name="search" @keyup.enter="getMerged">
-      <button class="btn btn-primary" type="submit" @click="getMerged"> Cerca </button>
+      <button class="btn btn-danger" type="submit" @click="getMerged"> Cerca </button>
     </div>
   </header>
 </template>
@@ -77,17 +81,28 @@ export default {
   header {
     background-color: #211F1F;
     height: 80px;
-    padding-bottom: 80px;
+    padding: 0 1em;
     width: 100%;
-  }.logo {
-    width: 200px;
-  }ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .container-left {
+    display: flex;
+    align-items: center;
+  }
+  ul {
     list-style: none;
     li {
       display: inline-block;
+      margin-right: 10px;
       a {
         text-decoration: none;
+        color: white;
       }
     }
+  }
+  .search-bar {
+
   }
 </style>
