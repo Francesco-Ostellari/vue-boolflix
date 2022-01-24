@@ -20,7 +20,10 @@
           <span class="mb-2">Lingua: <i :class="'flag flag-' + getFlags(lang)"></i></span>
           <span>Voto: {{arrNum(vote)}}</span>
           <div class="d-flex">
-            <i v-for="n in 5" :key="n" :class="(n <= arrNum(vote)) ? 'fas fa-star' : 'far fa-star'"
+            <i
+              v-for="(n, index) in 5"
+              :key="n"
+              :class="index < arrNum(vote) ? 'bi-star-fill' : 'bi-star'"
             />
           </div>
         </div>
@@ -70,6 +73,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
 .mycard {
   padding: 0.5em 1em;
   .layout-card {
